@@ -1,0 +1,98 @@
+[문제]
+
+1번과 동일
+
+5 SA 에 추가후 Commit(message V0.2)
+2번과 동일
+
+
+6 branch 생성 (dev,feature)
+git branch dev
+git branch feature
+
+7 feature branch에서 작업 진행
+git switch feature --> git log --oneline (체크하기)
+
+8 feature 에서 ddd.txt 파일생성후 내용입력 -> commit(V0.3)
+ddd.txt파일 생성 후 내용입력 --> git add * --> git commit -m(commit(V0.3)
+
+9 feature 를 dev으로 merging 작업수행
+(변경전) 헤더가 feature인상태에서 바로 git merge dev
+git switch dev --> git merge feature
+
+10 dev branch 에서 aaa.txt 내용 추가 -> commit(V0.4 by dev)
+git switch dev --> aaa.txt파일안에 내용 추가 --> git add *
+--> git commit -m "commit(V0.4 by dev)"
+
+11 feature branch 에서 aaa.txt 내용 추가 -> commit(V0.4 feature)
+git switch feature --> aaa.txt파일안에 내용추가 --> git add *
+--> git commit -m "commit(V0.4 feature)"
+
+12 Conflict 해결 이후 dev에 병합
+(변경전) 헤더가 dev인 상태에서 git merge feature
+git switch feature --> git merge dev --> 충돌발생 --> 파일안 내용정리 --> git add * --> git merge --continue
+--> :q
+=======>>>> featuer로 스위치 후 dev에서 병합한것을 feature에도 적용을 시켜야함
+13 dev 내용 master에 병합
+(변경전) git merge master
+git switch master --> git merge dev
+
+head --> abc <-- git merge dev
+head가 abc일 때 git merge dev하면 dev의 내용이 head인 abc로 넘어간다
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+branch 생성
+git branch 브랜치명
+
+branch 이동
+git switch 브랜치명
+git checkout 브랜치명
+
+branch 확인
+git branch
+
+branch 병합
+1 병합되는 branch 로 이동(git branch master)
+2 병합시도 (git merge dev - FastForward)
+
+branch 병합 - 충돌시
+1 병합되는 branch로 이동(git branch master)
+2 병합시도(git merge dev) --> 충돌발생!
+3 fixed - > git add * - > git merge --continue
+(none Fast Forword merge - 커밋시점 새로 만든다)
+4 git switch dev - > git merge master
+
+
+git switch dev
+git merge master
+
+------------------------------------------------------------------------------
+git 명령어
+
+git init --> git 초기화 ( 폴더 생성 )
+
+작업
+
+git add --> 작업물이 잠깐 머무는 공간 --> staging ( 작업한 파일을 불러옴 )
+
+git commit -m "메시지" --> local repository (불러온 파일을 저장)
+
+[되돌리기]
+git reset  -- soft		wd , sa , lr
+	-- mixed
+	-- hard		commit하지 않은 작업물도 다 날아감**
+
+
+[merge]
+
+git branch [브랜치명] --> 브랜치 생성
+git switch [브랜치명] == git checkout [브랜치명] --> 브랜치 변경
+git merge [브랜치명] -> 문제없음 = F.F(commit 새로 생성 X)
+
+충돌발생 --> 충돌위치 확인 후 다시 commit
+git merge --continue(N.F.F commit 새로 생성 O)
+
+
+
+
+
